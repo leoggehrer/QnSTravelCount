@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CommonBase\CommonBase.csproj" />
+    <ProjectReference Include="..\QnSTravelCount.Logic\QnSTravelCount.Logic.csproj" />
+    <ProjectReference Include="..\QnSTravelCount.Transfer\QnSTravelCount.Transfer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Customize\" />
+  </ItemGroup>
+
+</Project>
