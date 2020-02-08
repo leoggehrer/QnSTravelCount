@@ -11,7 +11,6 @@ namespace QnSTravelCount.Contracts.Business.App
         ITravel Travel { get; }
         IEnumerable<IExpense> Expenses { get; }
 
-        new int Id { get; }
         double TotalExpense { get; }
         double FriendPortion { get; }
         int NumberOfFriends { get; }

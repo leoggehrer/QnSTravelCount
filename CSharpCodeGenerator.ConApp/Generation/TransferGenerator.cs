@@ -35,6 +35,7 @@ namespace CSharpCodeGenerator.ConApp.Generation
         }
         partial void CanCreateTransfer(Type type, ref bool create);
         partial void CreateTransferAttributes(Type type, List<string> codeLines);
+        partial void CreateTransferPropertyAttributes(Type type, string propertyName, List<string> codeLines);
 
         public IEnumerable<string> CreateTransferFromInterface(Type type)
         {
@@ -50,6 +51,7 @@ namespace CSharpCodeGenerator.ConApp.Generation
             result.AddRange(CreatePartialConstrutor("public", entityName));
             foreach (var item in GetPublicProperties(type).Where(p => p.DeclaringType.Name.Equals("IIdentifiable") == false))
             {
+                CreateTransferPropertyAttributes(type, item.Name, result);
                 result.AddRange(CreatePartialProperty(item));
             }
             result.AddRange(CreateCopyProperties(type));
@@ -66,7 +68,7 @@ namespace CSharpCodeGenerator.ConApp.Generation
             {
                 if (CanCreate(type))
                 {
-                    result.AddRange(EnvelopeWithANamespace(CreateTransferFromInterface(type), CreateNameSpace(type)));
+                    result.AddRange(EnvelopeWithANamespace(CreateTransferFromInterface(type), CreateNameSpace(type), "using System.Text.Json.Serialization;"));
                     result.AddRange(EnvelopeWithANamespace(CreateTransferModel(type), CreateNameSpace(type)));
                 }
             }
@@ -81,7 +83,7 @@ namespace CSharpCodeGenerator.ConApp.Generation
             {
                 if (CanCreate(type))
                 {
-                    result.AddRange(EnvelopeWithANamespace(CreateTransferFromInterface(type), CreateNameSpace(type)));
+                    result.AddRange(EnvelopeWithANamespace(CreateTransferFromInterface(type), CreateNameSpace(type), "using System.Text.Json.Serialization;"));
                     result.AddRange(EnvelopeWithANamespace(CreateTransferModel(type), CreateNameSpace(type)));
                 }
             }
@@ -96,7 +98,7 @@ namespace CSharpCodeGenerator.ConApp.Generation
             {
                 if (CanCreate(type))
                 {
-                    result.AddRange(EnvelopeWithANamespace(CreateTransferFromInterface(type), CreateNameSpace(type)));
+                    result.AddRange(EnvelopeWithANamespace(CreateTransferFromInterface(type), CreateNameSpace(type), "using System.Text.Json.Serialization;"));
                     result.AddRange(EnvelopeWithANamespace(CreateTransferModel(type), CreateNameSpace(type)));
                 }
             }

@@ -1,5 +1,6 @@
 namespace QnSTravelCount.Transfer.Persistence.App
 {
+	using System.Text.Json.Serialization;
 	public partial class Expense : QnSTravelCount.Contracts.Persistence.App.IExpense
 	{
 		static Expense()
@@ -16,7 +17,6 @@ namespace QnSTravelCount.Transfer.Persistence.App
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private System.Int32 _travelId;
 		public System.Int32 TravelId
 		{
 			get
@@ -35,10 +35,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnTravelIdChanged();
 			}
 		}
+		private System.Int32 _travelId;
 		partial void OnTravelIdReading();
 		partial void OnTravelIdChanging(ref bool handled, ref System.Int32 _travelId);
 		partial void OnTravelIdChanged();
-		private System.DateTime _date;
 		public System.DateTime Date
 		{
 			get
@@ -57,10 +57,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnDateChanged();
 			}
 		}
+		private System.DateTime _date;
 		partial void OnDateReading();
 		partial void OnDateChanging(ref bool handled, ref System.DateTime _date);
 		partial void OnDateChanged();
-		private System.String _description;
 		public System.String Description
 		{
 			get
@@ -79,10 +79,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnDescriptionChanged();
 			}
 		}
+		private System.String _description;
 		partial void OnDescriptionReading();
 		partial void OnDescriptionChanging(ref bool handled, ref System.String _description);
 		partial void OnDescriptionChanged();
-		private System.Double _amount;
 		public System.Double Amount
 		{
 			get
@@ -101,10 +101,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnAmountChanged();
 			}
 		}
+		private System.Double _amount;
 		partial void OnAmountReading();
 		partial void OnAmountChanging(ref bool handled, ref System.Double _amount);
 		partial void OnAmountChanged();
-		private System.String _friend;
 		public System.String Friend
 		{
 			get
@@ -123,6 +123,7 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnFriendChanged();
 			}
 		}
+		private System.String _friend;
 		partial void OnFriendReading();
 		partial void OnFriendChanging(ref bool handled, ref System.String _friend);
 		partial void OnFriendChanged();
@@ -158,6 +159,7 @@ namespace QnSTravelCount.Transfer.Persistence.App
 }
 namespace QnSTravelCount.Transfer.Persistence.App
 {
+	using System.Text.Json.Serialization;
 	public partial class Travel : QnSTravelCount.Contracts.Persistence.App.ITravel
 	{
 		static Travel()
@@ -174,7 +176,6 @@ namespace QnSTravelCount.Transfer.Persistence.App
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private System.String _designation;
 		public System.String Designation
 		{
 			get
@@ -193,10 +194,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnDesignationChanged();
 			}
 		}
+		private System.String _designation;
 		partial void OnDesignationReading();
 		partial void OnDesignationChanging(ref bool handled, ref System.String _designation);
 		partial void OnDesignationChanged();
-		private System.String _description;
 		public System.String Description
 		{
 			get
@@ -215,10 +216,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnDescriptionChanged();
 			}
 		}
+		private System.String _description;
 		partial void OnDescriptionReading();
 		partial void OnDescriptionChanging(ref bool handled, ref System.String _description);
 		partial void OnDescriptionChanged();
-		private System.String _currency;
 		public System.String Currency
 		{
 			get
@@ -237,10 +238,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnCurrencyChanged();
 			}
 		}
+		private System.String _currency;
 		partial void OnCurrencyReading();
 		partial void OnCurrencyChanging(ref bool handled, ref System.String _currency);
 		partial void OnCurrencyChanged();
-		private System.String _friends;
 		public System.String Friends
 		{
 			get
@@ -259,10 +260,10 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnFriendsChanged();
 			}
 		}
+		private System.String _friends;
 		partial void OnFriendsReading();
 		partial void OnFriendsChanging(ref bool handled, ref System.String _friends);
 		partial void OnFriendsChanged();
-		private System.String _category;
 		public System.String Category
 		{
 			get
@@ -281,6 +282,7 @@ namespace QnSTravelCount.Transfer.Persistence.App
 				OnCategoryChanged();
 			}
 		}
+		private System.String _category;
 		partial void OnCategoryReading();
 		partial void OnCategoryChanging(ref bool handled, ref System.String _category);
 		partial void OnCategoryChanged();
@@ -316,6 +318,7 @@ namespace QnSTravelCount.Transfer.Persistence.App
 }
 namespace QnSTravelCount.Transfer.Persistence.Account
 {
+	using System.Text.Json.Serialization;
 	public partial class Application : QnSTravelCount.Contracts.Persistence.Account.IApplication
 	{
 		static Application()
@@ -332,7 +335,6 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private System.String _name;
 		public System.String Name
 		{
 			get
@@ -351,10 +353,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnNameChanged();
 			}
 		}
+		private System.String _name;
 		partial void OnNameReading();
 		partial void OnNameChanging(ref bool handled, ref System.String _name);
 		partial void OnNameChanged();
-		private System.String _token;
 		public System.String Token
 		{
 			get
@@ -373,10 +375,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnTokenChanged();
 			}
 		}
+		private System.String _token;
 		partial void OnTokenReading();
 		partial void OnTokenChanging(ref bool handled, ref System.String _token);
 		partial void OnTokenChanged();
-		private QnSTravelCount.Contracts.State _state;
 		public QnSTravelCount.Contracts.State State
 		{
 			get
@@ -395,6 +397,7 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnStateChanged();
 			}
 		}
+		private QnSTravelCount.Contracts.State _state;
 		partial void OnStateReading();
 		partial void OnStateChanging(ref bool handled, ref QnSTravelCount.Contracts.State _state);
 		partial void OnStateChanged();
@@ -428,6 +431,7 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 }
 namespace QnSTravelCount.Transfer.Persistence.Account
 {
+	using System.Text.Json.Serialization;
 	public partial class User : QnSTravelCount.Contracts.Persistence.Account.IUser
 	{
 		static User()
@@ -444,7 +448,6 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private System.String _userName;
 		public System.String UserName
 		{
 			get
@@ -463,10 +466,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnUserNameChanged();
 			}
 		}
+		private System.String _userName;
 		partial void OnUserNameReading();
 		partial void OnUserNameChanging(ref bool handled, ref System.String _userName);
 		partial void OnUserNameChanged();
-		private System.String _password;
 		public System.String Password
 		{
 			get
@@ -485,10 +488,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnPasswordChanged();
 			}
 		}
+		private System.String _password;
 		partial void OnPasswordReading();
 		partial void OnPasswordChanging(ref bool handled, ref System.String _password);
 		partial void OnPasswordChanged();
-		private System.String _email;
 		public System.String Email
 		{
 			get
@@ -507,10 +510,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnEmailChanged();
 			}
 		}
+		private System.String _email;
 		partial void OnEmailReading();
 		partial void OnEmailChanging(ref bool handled, ref System.String _email);
 		partial void OnEmailChanged();
-		private System.String _firstName;
 		public System.String FirstName
 		{
 			get
@@ -529,10 +532,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnFirstNameChanged();
 			}
 		}
+		private System.String _firstName;
 		partial void OnFirstNameReading();
 		partial void OnFirstNameChanging(ref bool handled, ref System.String _firstName);
 		partial void OnFirstNameChanged();
-		private System.String _lastName;
 		public System.String LastName
 		{
 			get
@@ -551,10 +554,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnLastNameChanged();
 			}
 		}
+		private System.String _lastName;
 		partial void OnLastNameReading();
 		partial void OnLastNameChanging(ref bool handled, ref System.String _lastName);
 		partial void OnLastNameChanged();
-		private System.String _fullName;
 		public System.String FullName
 		{
 			get
@@ -573,10 +576,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnFullNameChanged();
 			}
 		}
+		private System.String _fullName;
 		partial void OnFullNameReading();
 		partial void OnFullNameChanging(ref bool handled, ref System.String _fullName);
 		partial void OnFullNameChanged();
-		private System.String _phoneNumber;
 		public System.String PhoneNumber
 		{
 			get
@@ -595,10 +598,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnPhoneNumberChanged();
 			}
 		}
+		private System.String _phoneNumber;
 		partial void OnPhoneNumberReading();
 		partial void OnPhoneNumberChanging(ref bool handled, ref System.String _phoneNumber);
 		partial void OnPhoneNumberChanged();
-		private System.Byte[] _avatar;
 		public System.Byte[] Avatar
 		{
 			get
@@ -617,10 +620,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnAvatarChanged();
 			}
 		}
+		private System.Byte[] _avatar;
 		partial void OnAvatarReading();
 		partial void OnAvatarChanging(ref bool handled, ref System.Byte[] _avatar);
 		partial void OnAvatarChanged();
-		private System.String _avatarMimeType;
 		public System.String AvatarMimeType
 		{
 			get
@@ -639,10 +642,10 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnAvatarMimeTypeChanged();
 			}
 		}
+		private System.String _avatarMimeType;
 		partial void OnAvatarMimeTypeReading();
 		partial void OnAvatarMimeTypeChanging(ref bool handled, ref System.String _avatarMimeType);
 		partial void OnAvatarMimeTypeChanged();
-		private QnSTravelCount.Contracts.State _state;
 		public QnSTravelCount.Contracts.State State
 		{
 			get
@@ -661,6 +664,7 @@ namespace QnSTravelCount.Transfer.Persistence.Account
 				OnStateChanged();
 			}
 		}
+		private QnSTravelCount.Contracts.State _state;
 		partial void OnStateReading();
 		partial void OnStateChanging(ref bool handled, ref QnSTravelCount.Contracts.State _state);
 		partial void OnStateChanged();

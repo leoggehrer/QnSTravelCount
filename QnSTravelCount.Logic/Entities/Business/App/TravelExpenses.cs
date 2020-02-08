@@ -22,14 +22,7 @@ namespace QnSTravelCount.Logic.Entities.Business.App
         {
             _expenses = ExpenseEntities;
         }
-        partial void OnIdReading()
-        {
-            _id = TravelEntity.Id;
-        }
-        partial void OnIdChanged()
-        {
-            TravelEntity.Id = _id;
-        }
+        public override int Id { get => TravelEntity.Id; set => TravelEntity.Id = value; }
 
         partial void OnTotalExpenseReading()
         {

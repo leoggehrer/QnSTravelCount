@@ -17,7 +17,6 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private QnSTravelCount.Contracts.Persistence.App.ITravel _travel;
 		public QnSTravelCount.Contracts.Persistence.App.ITravel Travel
 		{
 			get
@@ -36,10 +35,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnTravelChanged();
 			}
 		}
+		private QnSTravelCount.Contracts.Persistence.App.ITravel _travel;
 		partial void OnTravelReading();
 		partial void OnTravelChanging(ref bool handled, ref QnSTravelCount.Contracts.Persistence.App.ITravel _travel);
 		partial void OnTravelChanged();
-		private System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Persistence.App.IExpense> _expenses;
 		public System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Persistence.App.IExpense> Expenses
 		{
 			get
@@ -58,32 +57,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnExpensesChanged();
 			}
 		}
+		private System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Persistence.App.IExpense> _expenses;
 		partial void OnExpensesReading();
 		partial void OnExpensesChanging(ref bool handled, ref System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Persistence.App.IExpense> _expenses);
 		partial void OnExpensesChanged();
-		private System.Int32 _id;
-		public System.Int32 Id
-		{
-			get
-			{
-				OnIdReading();
-				return _id;
-			}
-			set
-			{
-				bool handled = false;
-				OnIdChanging(ref handled, ref _id);
-				if (handled == false)
-				{
-					this._id = value;
-				}
-				OnIdChanged();
-			}
-		}
-		partial void OnIdReading();
-		partial void OnIdChanging(ref bool handled, ref System.Int32 _id);
-		partial void OnIdChanged();
-		private System.Double _totalExpense;
 		public System.Double TotalExpense
 		{
 			get
@@ -102,10 +79,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnTotalExpenseChanged();
 			}
 		}
+		private System.Double _totalExpense;
 		partial void OnTotalExpenseReading();
 		partial void OnTotalExpenseChanging(ref bool handled, ref System.Double _totalExpense);
 		partial void OnTotalExpenseChanged();
-		private System.Double _friendPortion;
 		public System.Double FriendPortion
 		{
 			get
@@ -124,10 +101,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnFriendPortionChanged();
 			}
 		}
+		private System.Double _friendPortion;
 		partial void OnFriendPortionReading();
 		partial void OnFriendPortionChanging(ref bool handled, ref System.Double _friendPortion);
 		partial void OnFriendPortionChanged();
-		private System.Int32 _numberOfFriends;
 		public System.Int32 NumberOfFriends
 		{
 			get
@@ -146,10 +123,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnNumberOfFriendsChanged();
 			}
 		}
+		private System.Int32 _numberOfFriends;
 		partial void OnNumberOfFriendsReading();
 		partial void OnNumberOfFriendsChanging(ref bool handled, ref System.Int32 _numberOfFriends);
 		partial void OnNumberOfFriendsChanged();
-		private System.String[] _friends;
 		public System.String[] Friends
 		{
 			get
@@ -168,10 +145,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnFriendsChanged();
 			}
 		}
+		private System.String[] _friends;
 		partial void OnFriendsReading();
 		partial void OnFriendsChanging(ref bool handled, ref System.String[] _friends);
 		partial void OnFriendsChanged();
-		private System.Double[] _friendAmounts;
 		public System.Double[] FriendAmounts
 		{
 			get
@@ -190,10 +167,10 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnFriendAmountsChanged();
 			}
 		}
+		private System.Double[] _friendAmounts;
 		partial void OnFriendAmountsReading();
 		partial void OnFriendAmountsChanging(ref bool handled, ref System.Double[] _friendAmounts);
 		partial void OnFriendAmountsChanged();
-		private System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Modules.TravelExpense.IBalance> _balances;
 		public System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Modules.TravelExpense.IBalance> Balances
 		{
 			get
@@ -212,6 +189,7 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				OnBalancesChanged();
 			}
 		}
+		private System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Modules.TravelExpense.IBalance> _balances;
 		partial void OnBalancesReading();
 		partial void OnBalancesChanging(ref bool handled, ref System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Modules.TravelExpense.IBalance> _balances);
 		partial void OnBalancesChanged();
@@ -229,7 +207,6 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 				Timestamp = other.Timestamp;
 				Travel = other.Travel;
 				Expenses = other.Expenses;
-				Id = other.Id;
 				TotalExpense = other.TotalExpense;
 				FriendPortion = other.FriendPortion;
 				NumberOfFriends = other.NumberOfFriends;
@@ -255,11 +232,11 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 			{
 				return false;
 			}
-			return Id == other.Id && IsEqualsWith(Timestamp, other.Timestamp) && IsEqualsWith(Travel, other.Travel) && IsEqualsWith(Expenses, other.Expenses) && Id == other.Id && TotalExpense == other.TotalExpense && FriendPortion == other.FriendPortion && NumberOfFriends == other.NumberOfFriends && IsEqualsWith(Friends, other.Friends) && IsEqualsWith(FriendAmounts, other.FriendAmounts) && IsEqualsWith(Balances, other.Balances);
+			return Id == other.Id && IsEqualsWith(Timestamp, other.Timestamp) && IsEqualsWith(Travel, other.Travel) && IsEqualsWith(Expenses, other.Expenses) && TotalExpense == other.TotalExpense && FriendPortion == other.FriendPortion && NumberOfFriends == other.NumberOfFriends && IsEqualsWith(Friends, other.Friends) && IsEqualsWith(FriendAmounts, other.FriendAmounts) && IsEqualsWith(Balances, other.Balances);
 		}
 		public override int GetHashCode()
 		{
-			return HashCode.Combine(Id, Timestamp, Travel, Expenses, Id, TotalExpense, HashCode.Combine(FriendPortion, NumberOfFriends, Friends, FriendAmounts, Balances));
+			return HashCode.Combine(Id, Timestamp, Travel, Expenses, TotalExpense, FriendPortion, HashCode.Combine(NumberOfFriends, Friends, FriendAmounts, Balances));
 		}
 	}
 }

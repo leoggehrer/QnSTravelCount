@@ -5,15 +5,7 @@ namespace QnSTravelCount.Logic
 		public static Contracts.Client.IControllerAccess<I> Create<I>() where I : Contracts.IIdentifiable
 		{
 			Contracts.Client.IControllerAccess<I> result = null;
-			if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.IExpense))
-			{
-				result = new Controllers.Persistence.App.ExpenseController(CreateContext()) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.ITravel))
-			{
-				result = new Controllers.Persistence.App.TravelController(CreateContext()) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
+			if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
 			{
 				result = new Controllers.Persistence.Account.ApplicationController(CreateContext()) as Contracts.Client.IControllerAccess<I>;
 			}
@@ -30,15 +22,7 @@ namespace QnSTravelCount.Logic
 		public static Contracts.Client.IControllerAccess<I> Create<I>(object sharedController) where I : Contracts.IIdentifiable
 		{
 			Contracts.Client.IControllerAccess<I> result = null;
-			if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.IExpense))
-			{
-				result = new Controllers.Persistence.App.ExpenseController(sharedController as Controllers.ControllerObject) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.ITravel))
-			{
-				result = new Controllers.Persistence.App.TravelController(sharedController as Controllers.ControllerObject) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
+			if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
 			{
 				result = new Controllers.Persistence.Account.ApplicationController(sharedController as Controllers.ControllerObject) as Contracts.Client.IControllerAccess<I>;
 			}

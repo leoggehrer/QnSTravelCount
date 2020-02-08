@@ -17,7 +17,6 @@ namespace QnSTravelCount.Logic.Entities.Modules.TravelExpense
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private System.String _from;
 		public System.String From
 		{
 			get
@@ -36,10 +35,10 @@ namespace QnSTravelCount.Logic.Entities.Modules.TravelExpense
 				OnFromChanged();
 			}
 		}
+		private System.String _from;
 		partial void OnFromReading();
 		partial void OnFromChanging(ref bool handled, ref System.String _from);
 		partial void OnFromChanged();
-		private System.String _to;
 		public System.String To
 		{
 			get
@@ -58,10 +57,10 @@ namespace QnSTravelCount.Logic.Entities.Modules.TravelExpense
 				OnToChanged();
 			}
 		}
+		private System.String _to;
 		partial void OnToReading();
 		partial void OnToChanging(ref bool handled, ref System.String _to);
 		partial void OnToChanged();
-		private System.Double _amount;
 		public System.Double Amount
 		{
 			get
@@ -80,6 +79,7 @@ namespace QnSTravelCount.Logic.Entities.Modules.TravelExpense
 				OnAmountChanged();
 			}
 		}
+		private System.Double _amount;
 		partial void OnAmountReading();
 		partial void OnAmountChanging(ref bool handled, ref System.Double _amount);
 		partial void OnAmountChanged();

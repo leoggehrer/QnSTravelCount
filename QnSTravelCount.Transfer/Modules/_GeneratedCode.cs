@@ -1,5 +1,6 @@
 namespace QnSTravelCount.Transfer.Modules.TravelExpense
 {
+	using System.Text.Json.Serialization;
 	public partial class Balance : QnSTravelCount.Contracts.Modules.TravelExpense.IBalance
 	{
 		static Balance()
@@ -16,7 +17,6 @@ namespace QnSTravelCount.Transfer.Modules.TravelExpense
 		}
 		partial void Constructing();
 		partial void Constructed();
-		private System.String _from;
 		public System.String From
 		{
 			get
@@ -35,10 +35,10 @@ namespace QnSTravelCount.Transfer.Modules.TravelExpense
 				OnFromChanged();
 			}
 		}
+		private System.String _from;
 		partial void OnFromReading();
 		partial void OnFromChanging(ref bool handled, ref System.String _from);
 		partial void OnFromChanged();
-		private System.String _to;
 		public System.String To
 		{
 			get
@@ -57,10 +57,10 @@ namespace QnSTravelCount.Transfer.Modules.TravelExpense
 				OnToChanged();
 			}
 		}
+		private System.String _to;
 		partial void OnToReading();
 		partial void OnToChanging(ref bool handled, ref System.String _to);
 		partial void OnToChanged();
-		private System.Double _amount;
 		public System.Double Amount
 		{
 			get
@@ -79,6 +79,7 @@ namespace QnSTravelCount.Transfer.Modules.TravelExpense
 				OnAmountChanged();
 			}
 		}
+		private System.Double _amount;
 		partial void OnAmountReading();
 		partial void OnAmountChanging(ref bool handled, ref System.Double _amount);
 		partial void OnAmountChanged();

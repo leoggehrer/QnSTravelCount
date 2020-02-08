@@ -7,15 +7,7 @@ namespace QnSTravelCount.Adapters
 			Contracts.Client.IAdapterAccess<I> result = null;
 			if (Adapter == AdapterType.Controller)
 			{
-				if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.IExpense))
-				{
-					result = new Controller.GenericControllerAdapter<QnSTravelCount.Contracts.Persistence.App.IExpense>() as Contracts.Client.IAdapterAccess<I>;
-				}
-				else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.ITravel))
-				{
-					result = new Controller.GenericControllerAdapter<QnSTravelCount.Contracts.Persistence.App.ITravel>() as Contracts.Client.IAdapterAccess<I>;
-				}
-				else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
+				if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
 				{
 					result = new Controller.GenericControllerAdapter<QnSTravelCount.Contracts.Persistence.Account.IApplication>() as Contracts.Client.IAdapterAccess<I>;
 				}
@@ -30,15 +22,7 @@ namespace QnSTravelCount.Adapters
 			}
 			else if (Adapter == AdapterType.Service)
 			{
-				if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.IExpense))
-				{
-					result = new Service.GenericServiceAdapter<QnSTravelCount.Contracts.Persistence.App.IExpense, Transfer.Persistence.App.Expense>(BaseUri, "Expense") as Contracts.Client.IAdapterAccess<I>;
-				}
-				else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.App.ITravel))
-				{
-					result = new Service.GenericServiceAdapter<QnSTravelCount.Contracts.Persistence.App.ITravel, Transfer.Persistence.App.Travel>(BaseUri, "Travel") as Contracts.Client.IAdapterAccess<I>;
-				}
-				else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
+				if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
 				{
 					result = new Service.GenericServiceAdapter<QnSTravelCount.Contracts.Persistence.Account.IApplication, Transfer.Persistence.Account.Application>(BaseUri, "Application") as Contracts.Client.IAdapterAccess<I>;
 				}
