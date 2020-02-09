@@ -12,7 +12,8 @@ namespace QnSTravelCount.ConApp
 
             Random rnd = new Random(DateTime.Now.Millisecond);
 
-            Adapters.Factory.Adapter = Adapters.Factory.AdapterType.Controller;
+            Adapters.Factory.BaseUri = "https://localhost:44380/api";
+            Adapters.Factory.Adapter = Adapters.Factory.AdapterType.Service;
             using var ctrlTravelExpense = Adapters.Factory.Create<Contracts.Business.App.ITravelExpenses>();
             var travels = await ctrlTravelExpense.GetAllAsync();
 

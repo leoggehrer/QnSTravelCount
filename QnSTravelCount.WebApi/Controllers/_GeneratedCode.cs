@@ -54,7 +54,7 @@ namespace QnSTravelCount.WebApi.Controllers
 		{
 			return UpdateModelAsync(model);
 		}
-		[HttpDelete("/api/[controller]/{ id}")]
+		[HttpDelete("/api/[controller]/{id}")]
 		public Task DeleteAsync(int id)
 		{
 			return DeleteModelAsync(id);
@@ -117,7 +117,7 @@ namespace QnSTravelCount.WebApi.Controllers
 		{
 			return UpdateModelAsync(model);
 		}
-		[HttpDelete("/api/[controller]/{ id}")]
+		[HttpDelete("/api/[controller]/{id}")]
 		public Task DeleteAsync(int id)
 		{
 			return DeleteModelAsync(id);
@@ -180,7 +180,7 @@ namespace QnSTravelCount.WebApi.Controllers
 		{
 			return UpdateModelAsync(model);
 		}
-		[HttpDelete("/api/[controller]/{ id}")]
+		[HttpDelete("/api/[controller]/{id}")]
 		public Task DeleteAsync(int id)
 		{
 			return DeleteModelAsync(id);
@@ -243,7 +243,7 @@ namespace QnSTravelCount.WebApi.Controllers
 		{
 			return UpdateModelAsync(model);
 		}
-		[HttpDelete("/api/[controller]/{ id}")]
+		[HttpDelete("/api/[controller]/{id}")]
 		public Task DeleteAsync(int id)
 		{
 			return DeleteModelAsync(id);
@@ -306,7 +306,7 @@ namespace QnSTravelCount.WebApi.Controllers
 		{
 			return UpdateModelAsync(model);
 		}
-		[HttpDelete("/api/[controller]/{ id}")]
+		[HttpDelete("/api/[controller]/{id}")]
 		public Task DeleteAsync(int id)
 		{
 			return DeleteModelAsync(id);

@@ -103,7 +103,7 @@ namespace QnSTravelCount.Adapters.Service
                 {
                     var contentData = await response.Content.ReadAsStreamAsync();
 
-                    return JsonSerializer.DeserializeAsync<TEntity[]>(contentData, DeserializerOptions) as IEnumerable<TContract>;
+                    return await JsonSerializer.DeserializeAsync<TEntity[]>(contentData, DeserializerOptions) as IEnumerable<TContract>;
                 }
                 else
                 {
@@ -125,7 +125,7 @@ namespace QnSTravelCount.Adapters.Service
                 {
                     var contentData = await response.Content.ReadAsStreamAsync();
 
-                    return JsonSerializer.DeserializeAsync<TEntity[]>(contentData, DeserializerOptions) as IEnumerable<TContract>;
+                    return await JsonSerializer.DeserializeAsync<TEntity[]>(contentData, DeserializerOptions) as IEnumerable<TContract>;
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace QnSTravelCount.Adapters.Service
                 {
                     var contentData = await response.Content.ReadAsStreamAsync();
 
-                    return JsonSerializer.DeserializeAsync<TEntity[]>(contentData, DeserializerOptions) as IEnumerable<TContract>;
+                    return await JsonSerializer.DeserializeAsync<TEntity[]>(contentData, DeserializerOptions) as IEnumerable<TContract>;
                 }
                 else
                 {
@@ -256,7 +256,7 @@ namespace QnSTravelCount.Adapters.Service
         {
             using (var client = GetClient(BaseUri))
             {
-                HttpResponseMessage response = await client.DeleteAsync(ExtUri);
+                HttpResponseMessage response = await client.DeleteAsync($"{ExtUri}/{id}");
                 if (response.IsSuccessStatusCode == false)
                 {
                     string errorMessage = $"{response.ReasonPhrase}: {await response.Content.ReadAsStringAsync()}";

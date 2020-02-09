@@ -173,6 +173,7 @@ namespace QnSTravelCount.Transfer.Business.App
 		partial void OnFriendAmountsReading();
 		partial void OnFriendAmountsChanging(ref bool handled, ref System.Double[] _friendAmounts);
 		partial void OnFriendAmountsChanged();
+		[JsonIgnore]
 		public System.Collections.Generic.IEnumerable<QnSTravelCount.Contracts.Modules.TravelExpense.IBalance> Balances
 		{
 			get

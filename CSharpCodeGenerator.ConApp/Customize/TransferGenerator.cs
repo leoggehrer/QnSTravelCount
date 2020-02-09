@@ -17,6 +17,10 @@ namespace CSharpCodeGenerator.ConApp.Generation
                 {
                     codeLines.Add("[JsonIgnore]");
                 }
+                else if (propertyName.Equals("Balances"))
+                {
+                    codeLines.Add("[JsonIgnore]");
+                }
             }
         }
     }

@@ -24,6 +24,16 @@ namespace QnSTravelCount.Logic.Entities.Business.App
         }
         public override int Id { get => TravelEntity.Id; set => TravelEntity.Id = value; }
 
+        partial void OnNumberOfFriendsReading()
+        {
+            int result = 0;
+
+            if (TravelEntity != null && TravelEntity.Friends.HasContent())
+            {
+                result = TravelEntity.Friends.Split(";").Length;
+            }
+            _numberOfFriends = result;
+        }
         partial void OnTotalExpenseReading()
         {
             double result = 0;
@@ -46,16 +56,6 @@ namespace QnSTravelCount.Logic.Entities.Business.App
                 result = result / NumberOfFriends;
             }
             _friendPortion = result;
-        }
-        partial void OnNumberOfFriendsReading()
-        {
-            int result = 0;
-
-            if (TravelEntity != null)
-            {
-                result = TravelEntity.Friends.Split(";").Length;
-            }
-            _numberOfFriends = result;
         }
         partial void OnFriendsReading()
         {
@@ -121,7 +121,7 @@ namespace QnSTravelCount.Logic.Entities.Business.App
 
         public string[] GetFriends()
         {
-            return TravelEntity != null ? TravelEntity.Friends.Split(";") : new string[0];
+            return TravelEntity != null && TravelEntity.Friends.HasContent() ? TravelEntity.Friends.Split(";") : new string[0];
         }
         public double GetTotalExpenseBy(string friend)
         {
