@@ -20,9 +20,4 @@
     <ProjectReference Include="..\QnSTravelCount.Contracts\QnSTravelCount.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\Persistence\" />
-    <Folder Include="Entities\Modules\" />
-  </ItemGroup>
-
 </Project>

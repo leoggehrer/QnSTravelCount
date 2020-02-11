@@ -28,7 +28,8 @@ namespace QnSTravelCount.Logic.DataContext.Db
                 .AddDebug();
         });
 #endif
-        private static string ConnectionString { get; set; } = "Data Source=(localdb)\\MSSQLLocalDb;Database=QnSTravelCountDb;Integrated Security=True;";
+//        private static string ConnectionString { get; set; } = "Data Source=(localdb)\\MSSQLLocalDb;Database=QnSTravelCountDb;Integrated Security=True;";
+        private static string ConnectionString { get; set; } = "Data Source=127.0.0.1;Database=QnSTravelCountDb;User Id=sa;Password=Gerhard123!";
 
         #region Configuration
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -8,51 +8,7 @@ namespace QnSTravelCount.Logic.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Account");
-
-            migrationBuilder.EnsureSchema(
                 name: "App");
-
-            migrationBuilder.CreateTable(
-                name: "Application",
-                schema: "Account",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    Token = table.Column<string>(nullable: true),
-                    State = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Application", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                schema: "Account",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Timestamp = table.Column<byte[]>(rowVersion: true, nullable: true),
-                    UserName = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    FullName = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    Avatar = table.Column<byte[]>(nullable: true),
-                    AvatarMimeType = table.Column<string>(nullable: true),
-                    State = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.Id);
-                });
 
             migrationBuilder.CreateTable(
                 name: "Travel",
@@ -115,14 +71,6 @@ namespace QnSTravelCount.Logic.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Application",
-                schema: "Account");
-
-            migrationBuilder.DropTable(
-                name: "User",
-                schema: "Account");
-
             migrationBuilder.DropTable(
                 name: "Expense",
                 schema: "App");

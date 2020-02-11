@@ -1,30 +1,46 @@
 
-# QnSTravelCount (Teil A)
+# QnSTravelCount
 
-Das Projekt 'QnSTravelCount' ist ein kleiner Framework für die Erstellung von datenzentrierten Anwendungen. Ausgehen von diesem System können neue Anwendungen erstellt und erweitert werden. Die Struktur des Frameworks besteht aus folgende Komponeneten:
-
-|Projekt|Beschreibung|Typ|Abhängigkeit
-|---|---|---|---|
-|**CommonBase**|In dieser Projekt werden alle Hilfsfunktionen und allgemeine Erweiterungen zusammengefasst. Diese sind unabhängig vom Problembereich und können auch in andere Domän-Projekte verwendet werden.|Library|keine
-|**QnSTravelCount.Contracts**|In dieser Projekt werden alle für das System notwendigen Schnittstellen und Enumerationen umgesetzt.|Library|keine
-|**QnSTravelCount.Logic**|Dieser Projekt beinhaltet den vollständigen Datenzugriff, die gesamte Geschäftslogik und stellt somit den zentralen Baustein des Systems dar. |Library|CommonBase, QnSTravelCount.Contracts
-|**QnSTravelCount.Transfer**|Dieser Projekt beinhaltet die Transferobjekte und dienen als Transportobjekte von Daten zwischen den einzelnen Schichten. |Library|CommonBase, QnSTravelCount.Contracts
-|**QnSTravelCount.WebApi**|In diesem Projekt ist die REST-Schnittstelle implementiert. Diese Modul stellt eine API (Aplication Programming Interface) für den Zugriff auf das System über das Netzwerk zur verfügung.|Host|CommonBase, QnSTravelCount.Contracts, QnSTravelCount.Logic
-|**QnSTravelCount.Adapters**|In diesem Projekt ist der Zugriff auf die Logik abstrahiert. Das bedeutet, dass der Zugriff auf die Geschäftslogik direkt oder über die REST-Schnittstelle erfolgen kann. Für dieses Modul ist die Schnittstelle 'IAdapterAccess\<T\>' im Schnittstellen-Projekt implementiert.|Host|CommonBase, QnSTravelCount.Contracts, QnSTravelCount.Logic, QnSTravelCount.Transfer
-|**QnSTravelCount.ConApp**|Dieses Projekt ist eine einfache Test-Anwendung zum Kopieren und Ausgeben der Daten. |Console|QnSTravelCount.Contracts, QnSTravelCount.Logic
-|**CSharpCodeGenerator.ConApp**|In diesem Projekt ist die Code-Generierung implementiert. Für alle System-Komponenten werden Standard-Komponenten generieriert. Diese Standard-Komponenten werden als 'partial'-Klasse generiert und können somit durch überschreiben von Eigenschaften und/oder Methoden bzw. durch das Schreiben von 'partial'-Methoden angepasst werden. Als Eingabe für den Generator dient das Schnittstellen-Projekt. Aus den Schnittstellen werden alle Informationen für die Generierung ermittelt. Der Generator wird automatisch bei einer Änderung der Schnittstellen ausgeführt.|Console|CommonBase
+Das Projekt 'QnSTravelCount' ist ein kleines datenzentriertes Anwendungsbeispiel mit welchem die Erstellung eines Software-Systems dargestellt werden soll. Dieses System wird mithilfe des '[QuickNSmart](https://github.com/leoggehrer/QuickNSmart)'-Framework erstellt. 
 
 ## Projekt
 
 Zur Umsetzung des Projektes wird DotNetCore (3.1) als Framework, die Programmiersprache CSharp (C#) und die Entwicklungsumgebung Visual Studio 2019 Community verwendet. Alle Komponenten können kostenlos aus dem Internet heruntergeladen werden.
 
+### Datenstruktur
+
+Die Datenstruktur vom 'QnSTravelCount' ist überschaulich und besteht im wesentlichen aus 2 Komponenten welche in der folgenden Tabelle zusammengefasst sind:
+
+|Komponente|Beschreibung|Grösse|Mussfeld|Eindeutig|
+|---|---|---|---|---|
+|**Travel**|Eine Reise ist die Zusammenfassung aller Kosten die auf dieser Reise entstanden sind.|
+|*Designation*|Bezeichnung der Reise|256|Ja|Ja|
+|*Description*|Bezeichnung der Reise|256|Nein|Nein|
+|*Currency*|Bezeichnung der Währung|10|Ja|Nein|
+|*Friends*|Angabe der Teilnehmer (Freunde) durch Semicolon getrennt|1024|Ja|Ja|
+|*Category*|Kategorie (Bildungsreise, Urlaub,..) der Reise|64|Nein|Nein|
+|**Expense**|Eine Kostenposition für eine Reise.|||
+|*TravelId*|Fremdschüssel zur rise (Travel)|int|Ja|Nein|
+|*Date*|Datum der Zahlung|DataTime|Ja|Nein|
+|*Description*|Beschreibung der Kosten (Essen, Eintritt...)|128|Ja|Nein|
+|*Friend*|Bezahlt vom Teilnehmer (Friend)|25|Ja|Nein|
+|**Hinweis**|Alle Komponenten haben eine eindeutige Identität (Id)||||
+|*|*Natürlich können noch weitere Attribute hinzugefügt werden.*||||
+
+Aus dieser Definition kann ein entsprechendes Objektmodell abgeleitet werden, welches nachfolgend skizziert ist:
+
+![Entities](Entities.png)
+
+Wie aus der Abbildung leicht erkennbar ist, sind für alle Entitäten Schnittstellen definiert. Diese Schnittstellen sind im Projekt 
+'QnSTravelCount.Contracts' im Ordner 'Persistence/App' definiert und dienen zur Interaktion mit den Entitätsobjekten außerhalb der Bibliothek. Das Model zeigt auch noch eine Basisklasse mit dem Namen 'IdentityObject'. Diese Klasse ist die Basisklasse für alle Entitäten im System und definiert die Identität der Objekte und beinhaltet die Eigenschaft, mit welcher die Identität eines Entitätstyp eindeutig bestimmt wird. Im Moment besteht diese Eigenschaft aus einer Id mit dem Datentyp Integer und wird vom System automatisch vergeben.  
+
 ## System-Erstellungs-Prozess
 
 ### Übersicht  
 
-![Erstellungsprozess](QnSTravelCount.png)
+![Erstellungsprozess](QnSTravelCount_Create.png)
 
-Als Ausgangsbasis wird der Framework 'QnSTravelCount' verwendet. Diese Projekt wird mit Hilfe dem Hilfsprogramm 'SolutionCopier' in ein Verzeichnis nach eigener Wahl kopiert. In diesem Verzeichnis werden alle Projektteile vom Framework kopiert und die Namen der Projekte werden entsprechend angepasst. Alle Projekte mit einem domainspezifischen Namen werden durch den Namen des Verzeichnisses ersetzt.  
+Als Ausgangsbasis wird der Framework 'QuickNSmart' verwendet. Diese Projekt wird mit Hilfe dem Hilfsprogramm 'SolutionCopier' in ein Verzeichnis nach eigener Wahl kopiert. In diesem Verzeichnis werden alle Projektteile vom Framework kopiert und die Namen der Projekte werden entsprechend angepasst. Alle Projekte mit einem domainspezifischen Namen werden durch den Namen des Verzeichnisses ersetzt.  
 
 Zum Beispiel soll ein Projekt mit dem Namen 'QnSTravelCount' erstellt werden:
 

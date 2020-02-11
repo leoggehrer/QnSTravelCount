@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+EXPOSE 80
+
+WORKDIR /src
+COPY ["CommonBase/CommonBase.csproj", "CommonBase/"]
+COPY ["QnSTravelCount.Contracts/QnSTravelCount.Contracts.csproj", "QnSTravelCount.Contracts/"]
+COPY ["QnSTravelCount.Logic/QnSTravelCount.Logic.csproj", "QnSTravelCount.Logic/"]
+COPY ["QnSTravelCount.Transfer/QnSTravelCount.Transfer.csproj", "QnSTravelCount.Transfer/"]
+COPY ["QnSTravelCount.WebApi/QnSTravelCount.WebApi.csproj", "QnSTravelCount.WebApi/"]
+
+RUN dotnet restore "QnSTravelCount.WebApi/QnSTravelCount.WebApi.csproj"
+COPY . .
+WORKDIR "/src/QnSTravelCount.WebApi"
+RUN dotnet build --no-restore "QnSTravelCount.WebApi.csproj" -c $BUILD_CONFIGURATION
+
+RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

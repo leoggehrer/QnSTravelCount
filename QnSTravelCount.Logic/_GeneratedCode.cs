@@ -5,15 +5,7 @@ namespace QnSTravelCount.Logic
 		public static Contracts.Client.IControllerAccess<I> Create<I>() where I : Contracts.IIdentifiable
 		{
 			Contracts.Client.IControllerAccess<I> result = null;
-			if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
-			{
-				result = new Controllers.Persistence.Account.ApplicationController(CreateContext()) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IUser))
-			{
-				result = new Controllers.Persistence.Account.UserController(CreateContext()) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Business.App.ITravelExpenses))
+			if (typeof(I) == typeof(QnSTravelCount.Contracts.Business.App.ITravelExpenses))
 			{
 				result = new Controllers.Business.App.TravelExpensesController(CreateContext()) as Contracts.Client.IControllerAccess<I>;
 			}
@@ -22,15 +14,7 @@ namespace QnSTravelCount.Logic
 		public static Contracts.Client.IControllerAccess<I> Create<I>(object sharedController) where I : Contracts.IIdentifiable
 		{
 			Contracts.Client.IControllerAccess<I> result = null;
-			if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IApplication))
-			{
-				result = new Controllers.Persistence.Account.ApplicationController(sharedController as Controllers.ControllerObject) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Persistence.Account.IUser))
-			{
-				result = new Controllers.Persistence.Account.UserController(sharedController as Controllers.ControllerObject) as Contracts.Client.IControllerAccess<I>;
-			}
-			else if (typeof(I) == typeof(QnSTravelCount.Contracts.Business.App.ITravelExpenses))
+			if (typeof(I) == typeof(QnSTravelCount.Contracts.Business.App.ITravelExpenses))
 			{
 				result = new Controllers.Business.App.TravelExpensesController(sharedController as Controllers.ControllerObject) as Contracts.Client.IControllerAccess<I>;
 			}
