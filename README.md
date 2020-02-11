@@ -68,7 +68,7 @@ Im Projekt 'QnSTravelCount' sind alle Code-Teile, welche mit den Namensraum 'Qui
 
 ### Anpassen des Projektes  
 
-Nun sind alle Projekt-Teile erstellt und im Projkt 'QnSTravelCount.Contracts' können die entsprechenden Schnittstellen definiert werden. Als Modul für die Schnittstellen wird der Name 'App' verwendet. Das hat den Vorteil, dass die Tabellen in diesem Bereich mit dem Datenbankschema 'App.XYZ' erstellt werden. Nachfolgend die Definition der Schnittstellen ITravel und IExpense:
+Nun sind alle Projekt-Teile erstellt und im Projekt 'QnSTravelCount.Contracts' können die entsprechenden Schnittstellen definiert werden. Als Modul für die Schnittstellen wird der Name 'App' verwendet. Das hat den Vorteil, dass die Tabellen in diesem Bereich mit dem Datenbankschema 'App.XYZ' erstellt werden. Nachfolgend die Definition der Schnittstellen ITravel und IExpense:
 
 ```csharp ({"Type": "FileRef", "File": "Contracts/Persistence/App/ITravel.cs", "StartTag": "//MdStart", "EndTag": "//MdEnd" })
 namespace QnSTravelCount.Contracts.Persistence.App
@@ -100,7 +100,7 @@ namespace QnSTravelCount.Contracts.Persistence.App
 }
 ``` 
 
-Wenn nach der Definition der Schnittstellen die Anwendung erstellt wird, erkennt das System die Änderung und aktiviert automatisch den Code-Generator. Das bedeutet, dass alle Komponenten neu generiert werden und in die Dateien '_GeneratedCode.cs' abgelegt sind. Der Code-Generator erzeugt alle Komponenten als 'partial'-Klassen. Damit hat eine man eine flexible Möglichkeit den generierten Code anzupassen.  
+Wenn nach der Definition der Schnittstellen die Anwendung erstellt wird, erkennt das System die Änderung und aktiviert automatisch den Code-Generator. Das bedeutet, dass alle Komponenten neu generiert werden und in die Dateien '_GeneratedCode.cs' abgelegt sind. Der Code-Generator erzeugt alle Komponenten als 'partial'-Klassen. Damit hat man eine flexible Möglichkeit den generierten Code anzupassen.  
 
 #### Anpassen der Datenbank  
 
@@ -151,5 +151,11 @@ Der Programmierer kann nun diese Methoden in einer 'partial'-Methode definieren 
                 .HasMaxLength(25);
         }
 ``` 
+
+#### Erstellen der Datenbank  
+
+Nun sind alle Vorbereitungen getroffen und die Datenbank kann erstellt werden. Das Erstellen der Datenbank kann nach der Installations-Anleitung, welche dem Projekt beigefügt ist, durchgeführt werden.  
+
+Wenn nun die Datenbank fehlerfrei erzeugt wurde, können bereits Reisen mit dem zugehörigen Kosten erstellt werden. Dabei ist es unerheblich, ob dies direkt - als über die Logik - oder über die Rest-Schnittstelle erfolgt.  
 
 **Viel Spaß beim Testen!**
