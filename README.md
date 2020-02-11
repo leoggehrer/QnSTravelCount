@@ -42,7 +42,7 @@ Wie aus der Abbildung leicht erkennbar ist, sind für alle Entitäten Schnittste
 
 Als Ausgangsbasis wird der Framework 'QuickNSmart' verwendet. Diese Projekt wird mit Hilfe dem Hilfsprogramm 'SolutionCopier' in ein Verzeichnis nach eigener Wahl kopiert. In diesem Verzeichnis werden alle Projektteile vom Framework kopiert und die Namen der Projekte werden entsprechend angepasst. Alle Projekte mit einem domainspezifischen Namen werden durch den Namen des Verzeichnisses ersetzt.  
 
-Zum Beispiel soll ein Projekt mit dem Namen 'QnSTravelCount' erstellt werden:
+In diesem Beispiel wird ein Projekt mit dem Namen 'QnSTravelCount' erstellt werden:
 
 ````csharp
 string sourcePath = @"...\QnSTravelCount";
@@ -54,6 +54,7 @@ sc.Copy(sourcePath, targetPath);
 ````
 
 Nach dem Ausführen vom SolutionCopier (*sc.Copy(sourcePath, targetPath)*) befindet sich folgende Verzeichnisstruktur in **QnSTravelCount**:  
+
 - CommonBase
 - CSharpCodeGenerator.ConApp
 - QnSTravelCount.Contracts
@@ -63,11 +64,92 @@ Nach dem Ausführen vom SolutionCopier (*sc.Copy(sourcePath, targetPath)*) befin
 - QnSTravelCount.Adapters
 - QnSTravelCount.ConApp
 
-Im Projekt 'QnSTravelCount' sind alle Code-Teile, welche als Basis-Code in andere Projekte verwendet werden können, mit einem Label '//@QnSCodeCopy' markiert. Dieser Label wird im Zielprojekt mit dem Label '//@QnSCodeCopy' ersetzt. Das hat den Vorteil, dass Änderungen im Framework auf die bereits bestehenden Projekte übertragen werden können (nähere Informationen dazu gibt es später).  
+Im Projekt 'QnSTravelCount' sind alle Code-Teile, welche mit den Namensraum 'QuickNSmart' verbunden sind mit dem neuen Projekt-Namen 'QnSTravelCont' ersetzt worden.  
 
 ### Anpassen des Projektes  
 
-Nach dem Erzeugen des 'Projektes' werden die Schnittstellen definiert und das Projekt Erstellt. Beim Erstellen wird zuerst das Schnittstellen-Projekt Kompiliert und nach deren Übersetzung wird der CSharpCodeGenerator.ConApp ausgeführt. Diese Ausführung wird mit dem Build-Event im Schnittstellen Projekt ausgeführt. Das Ausführen des Code-Generator hat 
+Nun sind alle Projekt-Teile erstellt und im Projkt 'QnSTravelCount.Contracts' können die entsprechenden Schnittstellen definiert werden. Als Modul für die Schnittstellen wird der Name 'App' verwendet. Das hat den Vorteil, dass die Tabellen in diesem Bereich mit dem Datenbankschema 'App.XYZ' erstellt werden. Nachfolgend die Definition der Schnittstellen ITravel und IExpense:
 
+```csharp ({"Type": "FileRef", "File": "Contracts/Persistence/App/ITravel.cs", "StartTag": "//MdStart", "EndTag": "//MdEnd" })
+namespace QnSTravelCount.Contracts.Persistence.App
+{
+    public partial interface ITravel : IIdentifiable, ICopyable<ITravel>
+    {
+        string Designation { get; set; }
+        string Description { get; set; }
+        string Currency { get; set; }
+        string Friends { get; set; }
+        string Category { get; set; }
+    }
+}
+``` 
+
+```csharp ({"Type": "FileRef", "File": "Contracts/Persistence/App/IExpense.cs", "StartTag": "//MdStart", "EndTag": "//MdEnd" })
+using System;
+
+namespace QnSTravelCount.Contracts.Persistence.App
+{
+    public partial interface IExpense : IIdentifiable, ICopyable<IExpense>
+    {
+        int TravelId { get; set; }
+        DateTime Date { get; }
+        string Description { get; set; }
+        double Amount { get; set; }
+        string Friend { get; set; }
+    }
+}
+``` 
+
+Wenn nach der Definition der Schnittstellen die Anwendung erstellt wird, erkennt das System die Änderung und aktiviert automatisch den Code-Generator. Das bedeutet, dass alle Komponenten neu generiert werden und in die Dateien '_GeneratedCode.cs' abgelegt sind. Der Code-Generator erzeugt alle Komponenten als 'partial'-Klassen. Damit hat eine man eine flexible Möglichkeit den generierten Code anzupassen.  
+
+#### Anpassen der Datenbank  
+
+Der Code-Generator erzeugt den 'QnSTravelCountDbContext' und legt dabei das Datenbankschema, den Tabellennamen, den Key (Schlüsselspalte Id) und den 'Timestamp (RowVersion) fest. Allerdings kann der Code-Generator nicht die Spaltengrößen, ob die Spalte Nullwerte erlaubt oder nicht usw., festlegen. Für diesen Zweck generiert der Code-Generator die folgenden 'partial'-Methoden:
+
+```csharp
+partial void ConfigureEntityType(EntityTypeBuilder<Entities.Persistence.App.Expense> entityTypeBuilder);
+partial void ConfigureEntityType(EntityTypeBuilder<Entities.Persistence.App.Travel> entityTypeBuilder);
+```
+
+Der Programmierer kann nun diese Methoden in einer 'partial'-Methode definieren und die fehlenden Eigenschaften festlegen. Nachfolgend befinden sich die erweiterten Definitionen für das Projekt 'QnSTravelCount':
+
+```csharp ({"Type": "FileRef", "File": "Logic/DataContext/Db/QnSTravelCountDbContext.cs", "StartTag": "//MdStartConfig", "EndTag": "//MdEndConfig" })
+        partial void ConfigureEntityType(EntityTypeBuilder<Travel> entityTypeBuilder)
+        {
+            entityTypeBuilder
+                .HasIndex(p => p.Designation)
+                .IsUnique();
+            entityTypeBuilder
+                .Property(p => p.Designation)
+                .IsRequired()
+                .HasMaxLength(256);
+            entityTypeBuilder
+                .Property(p => p.Description)
+                .HasMaxLength(256);
+            entityTypeBuilder
+                .Property(p => p.Currency)
+                .IsRequired()
+                .HasMaxLength(10);
+            entityTypeBuilder
+                .Property(p => p.Friends)
+                .IsRequired()
+                .HasMaxLength(1024);
+            entityTypeBuilder
+                .Property(p => p.Category)
+                .IsRequired()
+                .HasMaxLength(64);
+        }
+        partial void ConfigureEntityType(EntityTypeBuilder<Expense> entityTypeBuilder)
+        {
+            entityTypeBuilder
+                .Property(p => p.Description)
+                .IsRequired()
+                .HasMaxLength(128);
+            entityTypeBuilder
+                .Property(p => p.Friend)
+                .IsRequired()
+                .HasMaxLength(25);
+        }
+``` 
 
 **Viel Spaß beim Testen!**

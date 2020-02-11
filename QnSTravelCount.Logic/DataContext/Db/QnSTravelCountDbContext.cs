@@ -57,6 +57,7 @@ namespace QnSTravelCount.Logic.DataContext.Db
         partial void DoModelCreating(ModelBuilder modelBuilder);
         partial void AfterModelCreating(ModelBuilder modelBuilder);
 
+//MdStartConfig
         partial void ConfigureEntityType(EntityTypeBuilder<Travel> entityTypeBuilder)
         {
             entityTypeBuilder
@@ -93,6 +94,7 @@ namespace QnSTravelCount.Logic.DataContext.Db
                 .IsRequired()
                 .HasMaxLength(25);
         }
+//MdEndConfig
         #endregion Configuration
     }
 }
